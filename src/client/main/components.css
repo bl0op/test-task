@@ -1,0 +1,29 @@
+.btn {
+    color: var(--secondary-color);
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    padding: 6px 15px 8px 13px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    border-radius: 52px;
+}
+.btn:hover {
+    background-color: var(--primary-color-dark);
+}
+.btn-icon {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 18px;
+    margin-right: 8px;
+}
+.btn--dark {
+    background-color: var(--primary-color-darkest);
+    display: inline-block;
+}
+.btn--dark:hover {
+    background-color: var(--primary-color-dark);
+}

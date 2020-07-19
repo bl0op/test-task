@@ -6,8 +6,10 @@ function Brand({image, title, subtitle}){
     return (
         <div className='side-menu__brand'>
             <img src={image} className='side-menu__brand-logo'/>
-            <h3 className='side-menu__brand-title'>{title}</h3>
-            <h4 className='side-menu__brand-subtitle'>{subtitle}</h4>
+            <div>
+                <h3 className='side-menu__brand-title'>{title}</h3>
+                <h4 className='side-menu__brand-subtitle'>{subtitle}</h4>
+            </div>
         </div>
     );
 }
@@ -15,25 +17,31 @@ function Brand({image, title, subtitle}){
 export default function SideMenu(){
     return (
         <section className='side-menu'>
-            <Brand image={logo} title='Ферма Заслуженных Жирафов' subtitle='Россия и СНГ'/>
+            <Brand image={logo} title='Ферма Заслуженных Жирафов' subtitle='России и СНГ'/>
             <nav className='side-menu__nav'>
-                <a className='side-menu__nav-item' href="#">
-                    <i class="fas fa-home side-menu__nav-icon"></i> Главная
+                <a className='side-menu__nav-item' href='#'>
+                    <i className='fas fa-home side-menu__nav-icon'></i>
+                    <span className='side-menu__nav-text'>Главная</span>
                 </a>
                 <a className='side-menu__nav-item' href="#">
-                    <i class="fas fa-tasks side-menu__nav-icon"></i> Управление
+                    <i className="fas fa-tasks side-menu__nav-icon"></i>
+                    <span className='side-menu__nav-text'>Управление</span>
                 </a>
                 <a className='side-menu__nav-item side-menu__nav-item--active' href="#">
-                    <i class="fas fa-horse-head"></i> Жирафы
+                    <i className="fas fa-horse-head side-menu__nav-icon"></i>
+                    <span className='side-menu__nav-text'>Жирафы</span>
                 </a>
-                <a className='side-menu__nav-item side-menu__nav-item--active' href="#">
-                    <i class="fas fa-user-friends"></i> Сотрудники
+                <a className='side-menu__nav-item side-menu__nav-item' href="#">
+                    <i className="fas fa-user-friends side-menu__nav-icon"></i>
+                    <span className='side-menu__nav-text'>Сотрудники</span>
                 </a>
-                <a className='side-menu__nav-item side-menu__nav-item--active' href="#">
-                    <i class="fas fa-cog"></i> Настройки
+                <a className='side-menu__nav-item side-menu__nav-item' href="#">
+                    <i className="fas fa-cog side-menu__nav-icon "></i> 
+                    <span className='side-menu__nav-text'>Настройки</span>
                 </a>
-                <a className='side-menu__nav-item side-menu__nav-item--active' href="#">
-                    <i class="fas fa-tools"></i> Поддержка
+                <a className='side-menu__nav-item side-menu__nav-item' href="#">
+                    <i className="fas fa-tools side-menu__nav-icon"></i>
+                    <span className='side-menu__nav-text'>Поддержка</span>
                 </a>
             </nav>
         </section>

@@ -1,13 +1,15 @@
 import React from 'react';
+import './GirafeCard.css';
+import girafeImg from './girafe-img.png';
 
 function EditPanel(){
     return (
-        <div className='edit-panel__edit-btn'>
+        <div className='edit-panel'>
            <button className='btn'>
-               <i className='fas fa-pencil-alt edit-panel__edit-icon'> Редактировать</i>
+               <i className='fas fa-pencil-alt btn-icon'></i> Редактировать
             </button> 
            <button className='btn'>
-               <i className='fas fa-trash-alt edit-panel__edit-icon'> Удалить</i>
+               <i className='fas fa-trash-alt btn-icon'></i> Удалить
             </button> 
         </div>
     );
@@ -22,7 +24,7 @@ export default function GirafeCard() {
                     <i className='fas fa-ellipsis-h'></i>
                 </button>
             </div>
-            <img src='#' className='girafe-card__image'/>
+            <img src={girafeImg} className='girafe-card__image'/>
             <div className='girafe-card__body'>
                 <h1 className='girafe-card__name'>Мотильда</h1>
                 <div className='girafe-card__info-bar'>
@@ -37,25 +39,26 @@ export default function GirafeCard() {
                             <i className='fas fa-ruler-vertical'></i>
                         </li>
                     </ul>
+                    <ul className='girafe-card__info-stats'>
+                        <li className='girafe-card__info-stat'>
+                            Ж
+                        </li>
+                        <li className='girafe-card__info-stat'>
+                            800
+                        </li>
+                        <li className='girafe-card__info-stat'>
+                            4
+                        </li>
+                    </ul>
                 </div>
                 {/* /.girafe-card__image*/}
-                <ul className='girafe-card__info-stats'>
-                    <li className='girafe-card__info-stat'>
-                        Ж
-                    </li>
-                    <li className='girafe-card__info-stat'>
-                        800
-                    </li>
-                    <li className='girafe-card__info-stat'>
-                        4
-                    </li>
-                </ul>
-                <p><strong>Цвет: </strong> Стандарт</p>
-                <p><strong>Диета: </strong> Растительный</p>
-                <p><strong>Характер: </strong> Кокетка</p>
+                <p className='girafe-card__characteristic'><strong className='girafe-card__prop'>Цвет: </strong> Стандарт</p>
+                <p className='girafe-card__characteristic'><strong className='girafe-card__prop'>Диета: </strong> Растительный</p>
+                <p className='girafe-card__characteristic'><strong  className='girafe-card__prop'>Характер: </strong> Кокетка</p>
             </div>
             {/* /.girafe-card__body*/}
             <EditPanel isActive={''}/>
+        {/* /.girafe-card*/}
         </div>
     );
 }
