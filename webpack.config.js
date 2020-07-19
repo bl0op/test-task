@@ -9,7 +9,7 @@ const htmlArray = html.map(name => {
         filename: `${name}.html`,
         template: `${__dirname}/public/${name}.html`,
         templateParameters: () => {
-            return { 'foo': process.env.NODE_ENV == 'production' ? 'production' : 'dev' }
+            return { 'title': process.env.NODE_ENV == 'production' ? 'Ферма жирафов' : 'dev' }
         },
         hash: true,
         inject: true,
@@ -19,7 +19,7 @@ const htmlArray = html.map(name => {
 module.exports = {
     devtool: 'cheap-module-source-map',
     stats: {
-        all: false,
+        /*all: false,*/
         timings: true,
         cached: true
     },
@@ -49,6 +49,7 @@ module.exports = {
     devServer: {
         contentBase: './public',
         hot: true,
+        port: 19006
     },
     entry: {
         index: ['webpack-hot-middleware/client', 'react-hot-loader/patch', './src/client/main']

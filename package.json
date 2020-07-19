@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest --detectOpenHandles",
-    "dev:unix": "NODE_ENV=development webpack && NODE_ENV=development nodemon ./src/server/index.js --watch ./src/server",
-    "dev:win": "set NODE_ENV=development&& webpack && nodemon ./src/server/index.js --watch ./src/server"
+    "dev-client:unix": "NODE_ENV=development webpack-dev-server --host 0.0.0.0 --open",
+    "dev-server:unix": "NODE_ENV=development nodemon ./src/server/index.js --watch ./src/server",
+    "dev-client:win": "set NODE_ENV=development&& webpack",
+    "dev-server:win": "set NODE_ENV=development&& nodemon ./src/server/index.js --watch ./src/server"
   },
   "author": "light-tech.io",
   "license": "ISC",
