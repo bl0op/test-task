@@ -1,0 +1,89 @@
+.girafe-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F3DBC7;
+    border-radius: 28px;
+}
+.girafe-card__header {
+    margin-top: 14px;
+    margin-right: 23px;
+    align-self: stretch;
+    margin-bottom: 5px;
+}
+.girafe-card__edit-btn {
+    float: right;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--primary-color-dark);
+    border: none;
+    outline: none;
+}
+.girafe-card__edit-btn:hover {
+    color: var(--secondary-color);
+}
+.girafe-card__image {
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+.girafe-card__body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 24px;
+    margin-right: 23px;
+}
+.girafe-card__name {
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary-color-dark);
+    margin-bottom: 31px;
+}
+.girafe-card__info-bar{
+    margin-bottom: 22px;
+    min-width: 189px;
+    font-weight: 900;
+}
+.girafe-card__info-icons, .girafe-card__info-stats {
+    justify-content: space-between;
+    padding: 0px 23px 0px 24px;
+    list-style: none;
+    display: flex;
+}
+.girafe-card__info-icons {
+    margin-bottom: 13px;
+    color: var(--primary-color-dark);
+    font-size: 25px;
+    line-height: 29px;
+}
+.girafe-card__info-stats {
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #DCB18B;
+    border-radius: 58px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 19px;
+}
+.girafe-card__characteristic {
+    margin: 0;
+    margin-bottom: 19px;
+    color: #333333;
+    font-weight: 300;
+}
+.girafe-card__prop {
+    color: var(--primary-color-dark);
+}
+.edit-panel {
+    padding: 15px 13px 14px 10px;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 187px;
+    top: 39px;
+}

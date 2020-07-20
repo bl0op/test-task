@@ -1,0 +1,38 @@
+.main {
+    padding: 17px 34px 0px 49px;
+    background-color: var(--secondary-color);
+    flex-grow: 1;
+    border-radius: 28px;
+    position: relative;
+}
+
+/* main__auth */
+.main__auth {
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 3;
+}
+.main__auth-notify {
+    color: var(--primary-color-dark);
+    margin-right: 24px;
+    font-size: 24px;
+    line-height: 28px;
+    cursor: pointer;
+}
+.main__auth-avatar {
+    margin-right: 13px;
+    cursor: pointer;
+}
+.main__auth-username {
+    color: #484848;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 300;
+    cursor: pointer;
+}
+/* /main__auth */
+

@@ -1,6 +1,14 @@
 import React from 'react';
-import GirafeCard from './GirafeCardComponent.js';
+import { connect } from 'react-redux';
+
+import GirafeCard from './GirafeCardComponent';
 import './Girafes.css';
+
+const mapStateToProps = (state) => {
+    return {
+        enclosures: state.enclosures 
+    }
+}
 
 function TabBar(props){
     return (
@@ -73,7 +81,7 @@ function Updates(){
     );
 }
 
-export default function Girafes(){
+function Girafes(props){
     return (
         <div className='girafes'>
             <TabBar/>
@@ -85,10 +93,11 @@ export default function Girafes(){
             </div>
             <div className='girafes__cards'>
                 {/*...*/}
-                <GirafeCard/>
             </div>
             <GirafesInfo/>
             <Updates isActive={''}/>
         </div>
     );
 }
+
+export default Girafes;
