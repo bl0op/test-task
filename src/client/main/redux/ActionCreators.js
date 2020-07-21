@@ -36,16 +36,38 @@ export function addEnclosure(){
     }
 }
 
-export function AddEnclosureSuccess(enclosure) {
+export function addEnclosureSuccess(enclosure) {
     return {
         type: Actions.AddEnclosureSuccess
     }
 }
 
 /* girafes */
-export function addGirafe(girafe, enlosureId){
+export function addGirafe(girafe){
     return {
         type: Actions.AddGirafe,
         girafe: girafe
+    }
+}
+
+export function addGirafeSuccess(girafe){
+    return {
+        type: Actions.AddGirafeSuccess,
+        girafe: girafe
+    }
+}
+
+export function deleteGirafe(id){
+    return {
+        type: Actions.DeleteGirafe,
+        id: id
+    }
+}
+
+/* In fact, there should be recieved girefes list from post request as a parameter*/
+export function deleteGirafeSuccess(id){
+    return {
+        type: Actions.DeleteGirafeSuccess,
+        id: id
     }
 }

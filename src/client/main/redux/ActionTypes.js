@@ -10,3 +10,6 @@ export const AddEnclosureSuccess = 'ADD_ENCLOSURE_SUCCESS';
 
 /* girafes */
 export const AddGirafe = 'ADD_GIRAFE';
+export const AddGirafeSuccess = 'ADD_GIRAFE_SUCCESS';
+export const DeleteGirafe = 'DELETE_GIRAFE';
+export const DeleteGirafeSuccess = 'DELETE_GIRAFE_SUCCESS';

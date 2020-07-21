@@ -6,7 +6,10 @@
     margin-right: 30px;
     background-color: #F3DBC7;
     border-radius: 28px;
-    padding-bottom: 23px;
+    margin-bottom: 30px;
+}
+.girafe-card--editable {
+    box-shadow: 0px 5px 15px #869CB0;
 }
 .girafe-card__header {
     margin-top: 14px;
@@ -34,10 +37,15 @@
     flex-direction: column;
     margin-left: 24px;
     margin-right: 23px;
+    padding-bottom: 25px;
 }
 .girafe-card__name {
+    border: none;
+    background-color: transparent;
+    outline: none;
     font-size: 22px;
     line-height: 26px;
+    max-width: 189px;
     text-align: center;
     font-weight: bold;
     color: var(--primary-color-dark);
@@ -50,34 +58,65 @@
 }
 .girafe-card__info-icons, .girafe-card__info-stats {
     justify-content: space-between;
-    padding: 0px 23px 0px 24px;
-    list-style: none;
+    width: 189px;
+    text-align: center;
     display: flex;
 }
 .girafe-card__info-icons {
     margin-bottom: 13px;
     color: var(--primary-color-dark);
     font-size: 25px;
+    margin-right: 0px;
+    line-height: 29px;
+}
+.girafe-card__info-icon {
+    color: var(--primary-color-dark);
+    font-size: 25px;
+    width: 100%;
     line-height: 29px;
 }
 .girafe-card__info-stats {
-    color: #333333;
-    font-weight: bold;
-    font-size: 16px;
     background-color: #DCB18B;
+    text-align: center;
     border-radius: 58px;
     padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
     padding-bottom: 10px;
+}
+.girafe-card__info-stat {
+    text-align: center;
+    font-size: 16px;
     line-height: 19px;
+    color: #333333;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+    display: inline;
+    overflow: visible;
+    width: 49px;
 }
 .girafe-card__characteristic {
     margin: 0;
     margin-bottom: 19px;
-    color: #333333;
-    font-weight: 300;
 }
 .girafe-card__prop {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: bold;
     color: var(--primary-color-dark);
+}
+.girafe-card__prop-val {
+    border: none;
+    color: #333333;
+    outline: none;
+    background-color: transparent;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    width: 130px;
 }
 .girafe-card__btn {
     border: none;

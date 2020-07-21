@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import * as ActionsCreators from '../../redux/ActionCreators';
-import { GirafeCard } from './GirafeCardComponent';
+import { GirafeCard, EditableGirafeCard } from './GirafeCardComponent';
 import './Girafes.css';
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addEnclosure : () => dispatch(ActionsCreators.addEnclosure()),
-        addGirafe : (girafe, enclosureId) => dispatch(ActionsCreators.addGirafe(girafe, enclosureId))
+        addGirafe : (girafe) => dispatch(ActionsCreators.addGirafe(girafe)),
+        deleteGirafe : (id) => dispatch(ActionsCreators.deleteGirafe(id))
     }
 }
 
@@ -124,6 +125,10 @@ function Girafes(props){
         setSelectedEnclosure(id);
     }
 
+    function cancelNew(id) {
+        setIsAddingNew(false);
+    }
+
     function editGirafe(id){
         console.log(id);
         if(id === editedGirafe){
@@ -132,6 +137,18 @@ function Girafes(props){
         else {
             setEditedGirafe(id);
         }
+    }
+
+    function deleteGirafe(id) {
+        console.log('dd');
+        setEditedGirafe('-1');
+        props.deleteGirafe(id);
+    }
+
+    function addGirafe(girafe){
+        girafe.enclosureId = selectedEnclosure;
+        props.addGirafe(girafe);
+        setIsAddingNew(false);
     }
 
     function getFullness(){
@@ -173,19 +190,20 @@ function Girafes(props){
                     {/* card for adding new*/}
                     {
                         isAddingNew && 
-                        <GirafeCard
+                        <EditableGirafeCard
                             key={'0'}
                             girafe={{ 
-                            enclosureId: '',
-                            name: '_',
-                            weight: '-',
-                            sex: '-',
-                            height: '-',
-                            color: '',
-                            diet: '',
-                            temper: '',
+                                enclosureId: '',
+                                name: '',
+                                weight: '',
+                                sex: '',
+                                height: '',
+                                color: '',
+                                diet: '',
+                                temper: '',
                             }}
-                            onEdit={editGirafe}
+                            onHeaderClick={cancelNew}
+                            onClick={(girafe) => addGirafe(girafe)}
                         />
                     }
                     {
@@ -196,22 +214,12 @@ function Girafes(props){
                                         key={id.toString()}
                                         id={id}
                                         girafe={props.girafes.byIds[id]}
-                                        onEdit={editGirafe}
+                                        onHeaderClick={editGirafe}
                                         edited={editedGirafe === id}
+                                        onDelete={(id) => deleteGirafe}
                                     />
                             )
                     }
-                    {/*props.enclosures
-                        .filter(enclosure => enclosure.id === selectedEnclosure)[0]
-                            .girafes.map((girafe) => 
-                                <GirafeCard
-                                    key={girafe.id.toString()}
-                                    girafe={girafe}
-                                    onEdit={editGirafe}
-                                    edited={editedGirafe === girafe.id}
-                                />
-                            )
-                    */}
                 </div>
                 <GirafesInfo  fullness={getFullness()}/>
                 <Updates/>

@@ -99,6 +99,9 @@
     font-size: 18px;
     line-height: 21px;
 }
+.girafes__add-btn:active {
+    background-color: var(--primary-color);
+}
 .girafes__add-icon {
     margin-top: 2px;
 }
@@ -109,6 +112,7 @@
     display: flex;
     padding-bottom: 221px;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 /* /girafes__cards */
 
