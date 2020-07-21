@@ -41,3 +41,11 @@ export function AddEnclosureSuccess(enclosure) {
         type: Actions.AddEnclosureSuccess
     }
 }
+
+/* girafes */
+export function addGirafe(girafe, enlosureId){
+    return {
+        type: Actions.AddGirafe,
+        girafe: girafe
+    }
+}

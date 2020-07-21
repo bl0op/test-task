@@ -4,9 +4,11 @@ import * as Actions from './ActionTypes';
 export default function enclosures(state = ENCLOSURES, action){
     switch(action.type){
         case Actions.AddEnclosureSuccess:
-            const id = state.length + 1;
+            console.log('Hello');
+            /* temp */
+            const id = (state.allIds.length + 1).toString();
             if(id < 5) {
-                return [...state, {id: id, girafes: [], max: 5, actions: []}];
+                return {...state, allIds: [...state.allIds, id], byIds: {...state.byIds, [id]: {max: 5}}};
             }
             else {
                 return state;

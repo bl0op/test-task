@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import * as ActionsCreators from '../../redux/ActionCreators';
-import GirafeCard from './GirafeCardComponent';
+import { GirafeCard } from './GirafeCardComponent';
 import './Girafes.css';
 
 const mapStateToProps = (state) => {
     return {
-        enclosures: state.enclosures 
+        enclosures: state.enclosures,
+        girafes: state.girafes
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addEnclosure : () => dispatch(ActionsCreators.addEnclosure())
+        addEnclosure : () => dispatch(ActionsCreators.addEnclosure()),
+        addGirafe : (girafe, enclosureId) => dispatch(ActionsCreators.addGirafe(girafe, enclosureId))
     }
 }
 
@@ -29,7 +31,7 @@ function Tab(props){
 
 function TabBar(props){
     let tabs = [];
-    if(props.enclosures.length === 0){
+    if(props.enclosures.allIds.length === 0){
         tabs.push(
             <li key='0' className='girafes__tab-item'>
                 Добавить вольер
@@ -37,8 +39,8 @@ function TabBar(props){
         )
     }
     else {
-        tabs = props.enclosures.map((enclosure) => (
-            <Tab  key={enclosure.id.toString()} id={enclosure.id} onClick={props.onClick} selected={props.selected}/>
+        tabs = props.enclosures.allIds.map((id) => (
+            <Tab  key={id} id={id} onClick={props.onClick} selected={props.selected}/>
         ))
     }
     return (
@@ -66,7 +68,6 @@ function GirafesInfo(props){
                 <span className='girafes__info-percent'>{props.fullness}%</span> Заполнение вольера
             </div>
             <div>
-                {/* deal with separate btn class */}
                 <progress className='fullness-bar' value={props.fullness} max='100'></progress> <button className='btn btn--dark'> Информация</button>
             </div>
         </div>
@@ -108,25 +109,40 @@ function Updates(){
 
 function Girafes(props){
 
-    const [selectedEnclosure, setSelectedEnclosure] = useState(1); 
-    const [editedGirafe, setEditedGirafe] = useState(-1);
+    let firstTab = '';
 
+    if (props.enclosures.allIds.length !== 0) {
+        firstTab = props.enclosures.allIds[0];
+    }
+
+    const [selectedEnclosure, setSelectedEnclosure] = useState(firstTab); 
+    const [editedGirafe, setEditedGirafe] = useState('-1');
+    const [isAddingNew, setIsAddingNew] = useState(false);
 
     function selectTab(id) {
+        setIsAddingNew(false);
         setSelectedEnclosure(id);
     }
 
     function editGirafe(id){
+        console.log(id);
+        if(id === editedGirafe){
+            setEditedGirafe('-1');
+        }
+        else {
             setEditedGirafe(id);
+        }
     }
 
     function getFullness(){
-        let max = props.enclosures.filter(enclosure => enclosure.id === selectedEnclosure)[0].max;
-        let girafeCount = props.enclosures.filter(enclosure => enclosure.id === selectedEnclosure)[0].girafes.length;
-        return Math.floor((girafeCount/max)*100);
+        let max = props.enclosures.byIds[selectedEnclosure].max;
+        let girafeCount = props.girafes.allIds
+                            .filter((id) => props.girafes.byIds[id].enclosureId === selectedEnclosure)
+                            .length;
+        return Math.floor(girafeCount/max*100);
     }
 
-    if (props.enclosures.length === 0) {
+    if (props.enclosures.allIds.length === 0) {
         return (
             <div className='girafes'>
                 <TabBar
@@ -140,10 +156,7 @@ function Girafes(props){
     }
     else {
         return (
-            <div 
-                className='girafes'
-                onClick={() => editGirafe(-1)}
-            >
+            <div className='girafes'>
                 <TabBar
                     enclosures={props.enclosures}
                     onClick={selectTab}
@@ -152,12 +165,43 @@ function Girafes(props){
                 />
                 <div className='girafes__header'>
                    <h2 className='girafes__title'>Жирафы</h2> 
-                   <button className='girafes__add-btn'>
+                   <button className='girafes__add-btn' onClick={() => setIsAddingNew(true)} >
                        <i className='fas fa-plus  girafes__add-icon'></i>
                    </button>
                 </div>
                 <div className='girafes__cards'>
-                    {props.enclosures
+                    {/* card for adding new*/}
+                    {
+                        isAddingNew && 
+                        <GirafeCard
+                            key={'0'}
+                            girafe={{ 
+                            enclosureId: '',
+                            name: '_',
+                            weight: '-',
+                            sex: '-',
+                            height: '-',
+                            color: '',
+                            diet: '',
+                            temper: '',
+                            }}
+                            onEdit={editGirafe}
+                        />
+                    }
+                    {
+                        props.girafes.allIds
+                            .filter((id) => props.girafes.byIds[id].enclosureId === selectedEnclosure)
+                            .map((id) => 
+                                    <GirafeCard
+                                        key={id.toString()}
+                                        id={id}
+                                        girafe={props.girafes.byIds[id]}
+                                        onEdit={editGirafe}
+                                        edited={editedGirafe === id}
+                                    />
+                            )
+                    }
+                    {/*props.enclosures
                         .filter(enclosure => enclosure.id === selectedEnclosure)[0]
                             .girafes.map((girafe) => 
                                 <GirafeCard
@@ -167,7 +211,7 @@ function Girafes(props){
                                     edited={editedGirafe === girafe.id}
                                 />
                             )
-                    }
+                    */}
                 </div>
                 <GirafesInfo  fullness={getFullness()}/>
                 <Updates/>
