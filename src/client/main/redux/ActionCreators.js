@@ -1,5 +1,6 @@
 import * as Actions from './ActionTypes';
 
+/* auth */
 export function authUser(email, password){
     return {
         type: Actions.AuthUser,
@@ -25,5 +26,18 @@ export function authFailed(err){
     return {
         type: Actions.AuthFailed,
         errmess: err
+    }
+}
+
+/* enclosures */
+export function addEnclosure(){
+    return {
+        type: Actions.AddEnclosure
+    }
+}
+
+export function AddEnclosureSuccess(enclosure) {
+    return {
+        type: Actions.AddEnclosureSuccess
     }
 }

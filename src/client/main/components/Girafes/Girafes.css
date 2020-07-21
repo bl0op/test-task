@@ -108,6 +108,7 @@
 .girafes__cards {
     display: flex;
     padding-bottom: 221px;
+    flex-wrap: wrap;
 }
 /* /girafes__cards */
 

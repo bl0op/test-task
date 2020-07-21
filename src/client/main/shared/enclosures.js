@@ -13,6 +13,17 @@ const ENCLOSURES =
                     diet: 'Шашлычная',
                     temper: 'Вспыльчивый',
                     image: 'giraffe_goga.jpg'
+                },
+                {
+                    id: 1,
+                    name: 'Матильда',
+                    weight: 600,
+                    sex: 'Ж',
+                    height: 3.9,
+                    color: 'Салатовый',
+                    diet: 'Веганская',
+                    temper: 'Женский',
+                    image: 'giraffe_goga.jpg'
                 }
             ],
             max: 5,
@@ -24,7 +35,8 @@ const ENCLOSURES =
                     status: 0
                 }
             ]
-        }
+        },
+
     ]
 
 export default ENCLOSURES;

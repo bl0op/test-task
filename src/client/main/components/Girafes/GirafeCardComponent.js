@@ -16,17 +16,20 @@ function EditPanel(){
 }
 
 /* fas fa-ruler-vertical */
-export default function GirafeCard() {
+export default function GirafeCard(props) {
     return (
         <div className='girafe-card'>
             <div className='girafe-card__header'>
-                <button className='girafe-card__edit-btn'>
+                <button 
+                    className='girafe-card__edit-btn'
+                    onClick={() => props.onEdit(props.girafe.id)}
+                >
                     <i className='fas fa-ellipsis-h'></i>
                 </button>
             </div>
             <img src={girafeImg} className='girafe-card__image'/>
             <div className='girafe-card__body'>
-                <h1 className='girafe-card__name'>Мотильда</h1>
+                <h1 className='girafe-card__name'>{props.girafe.name}</h1>
                 <div className='girafe-card__info-bar'>
                     <ul className='girafe-card__info-icons'>
                         <li className='girafe-card__info-icon'>
@@ -41,23 +44,25 @@ export default function GirafeCard() {
                     </ul>
                     <ul className='girafe-card__info-stats'>
                         <li className='girafe-card__info-stat'>
-                            Ж
+                            {props.girafe.sex}
                         </li>
                         <li className='girafe-card__info-stat'>
-                            800
+                            {props.girafe.weight}
                         </li>
                         <li className='girafe-card__info-stat'>
-                            4
+                            {props.girafe.height}
                         </li>
                     </ul>
                 </div>
                 {/* /.girafe-card__image*/}
-                <p className='girafe-card__characteristic'><strong className='girafe-card__prop'>Цвет: </strong> Стандарт</p>
-                <p className='girafe-card__characteristic'><strong className='girafe-card__prop'>Диета: </strong> Растительный</p>
-                <p className='girafe-card__characteristic'><strong  className='girafe-card__prop'>Характер: </strong> Кокетка</p>
+                <p className='girafe-card__characteristic'><strong className='girafe-card__prop'>Цвет: </strong> {props.girafe.color} </p>
+                <p className='girafe-card__characteristic'><strong className='girafe-card__prop'>Диета: </strong> {props.girafe.diet} </p>
+                <p className='girafe-card__characteristic'><strong  className='girafe-card__prop'>Характер: </strong> {props.girafe.temper} </p>
             </div>
             {/* /.girafe-card__body*/}
-            <EditPanel isActive={''}/>
+            {
+               props.edited && <EditPanel/>
+            }
         {/* /.girafe-card*/}
         </div>
     );
