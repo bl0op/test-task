@@ -21,7 +21,7 @@ function* watchGirafesSaga() {
 /* not async yet */
 function* authUser(action) {
     yield put(ActionCreators.authStart());
-    //yield delay(1000);
+    yield delay(1000);
     yield put(ActionCreators.authSuccess(action.email));
 }
 
