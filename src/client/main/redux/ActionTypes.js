@@ -13,3 +13,7 @@ export const AddGirafe = 'ADD_GIRAFE';
 export const AddGirafeSuccess = 'ADD_GIRAFE_SUCCESS';
 export const DeleteGirafe = 'DELETE_GIRAFE';
 export const DeleteGirafeSuccess = 'DELETE_GIRAFE_SUCCESS';
+
+/* actions */
+export const AddAction = 'ADD_ACTION';
+export const UpdateAction = 'UPDATE_ACTION';

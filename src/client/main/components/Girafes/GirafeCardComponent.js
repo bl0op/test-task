@@ -6,9 +6,9 @@ import unknownImg from '../../shared/unknown.png'
 function EditPanel(props){
     return (
         <div className='edit-panel'>
-           <button className='btn'>
+           {/*<button className='btn'>
                <i className='fas fa-pencil-alt btn-icon'></i> Редактировать
-            </button> 
+            </button> */}
            <button className='btn' onClick={() => props.onDelete(props.id)}>
                <i className='fas fa-trash-alt btn-icon'></i> Удалить
             </button> 

@@ -37,4 +37,16 @@ button {
 
 #react-root {
     display: flex;
+    flex-direction: row;
+}
+
+/* medias */
+@media (max-width: 599px){
+    body {
+        padding: 0;
+    }
+    #react-root {
+        display: flex;
+        flex-direction: column;
+    }
 }

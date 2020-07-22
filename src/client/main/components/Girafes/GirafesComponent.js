@@ -8,7 +8,8 @@ import './Girafes.css';
 const mapStateToProps = (state) => {
     return {
         enclosures: state.enclosures,
-        girafes: state.girafes
+        girafes: state.girafes,
+        actions: state.actions
     }
 }
 
@@ -62,31 +63,30 @@ function TabBar(props){
 function GirafesInfo(props){
     return (
         <div className='girafes__info'>
-            <button className='girafes__hide-info-btn'>
+            <button className='girafes__hide-info-btn' onClick={props.onClose}>
                 <i className='fas fa-times'></i>
             </button>
             <div className='girafes__info-title'>
                 <span className='girafes__info-percent'>{props.fullness}%</span> Заполнение вольера
             </div>
             <div>
-                <progress className='fullness-bar' value={props.fullness} max='100'></progress> <button className='btn btn--dark'> Информация</button>
+                <progress className='fullness-bar' value={props.fullness} max='100'></progress> <button className='btn btn--dark' onClick={ props.onClick }> Информация</button>
             </div>
         </div>
     );
 }
 
-function Updates(){
+function Updates(props){
     return (
         <div className='updates'>
             <div className='updates__header'>
-                <h3 className='updates__title'>Обновление</h3>
-                <button className='girafes__hide-info-btn'>
-                    <i className='fas fa-times '></i>
+                <h3 className='updates__title'>Обновления</h3>
+                <button className='updates__hide-updates-btn' onClick={props.onClose}>
+                    <i className='fas fa-times'></i>
                 </button>
             </div>
-            <div className='updates__table'>
-                <table>
-                    <thead className='updates__table--head'>
+            <table className='updates__table'>
+                    <thead className='updates__table-head'>
                         <tr>
                             <td>Дата</td>
                             <td>Действие</td>
@@ -94,16 +94,25 @@ function Updates(){
                             <td>Статус</td>
                         </tr>
                     </thead>
-                    <tbody className='updates__table--body'>
-                        <tr>
-                            <td>02 апр 2020</td>
-                            <td>Новый жираф</td>
-                            <td>Матильда</td>
-                            <td><div className='badge badge--green'>Выполнено</div></td>
-                        </tr>
+                    <tbody className='updates__table-body'>
+                        {props.actions.allIds
+                        .filter((id) => 
+                            props.actions.byIds[id].enclosureId === props.enclosureId
+                        )
+                        .reverse()
+                        .map((id) => 
+                            <tr key={id}>
+                                <td>{props.actions.byIds[id].date}</td>
+                                <td>{props.actions.byIds[id].type}</td>
+                                <td>{props.actions.byIds[id].girafeName}</td>
+                                <td>
+                                    {props.actions.byIds[id].status === 0 && <div className='badge badge--blue'>Ожидается</div>}
+                                    {props.actions.byIds[id].status === 1 && <div className='badge badge--green'>Выполнено</div>}
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
-                </table>
-            </div>
+            </table>
         </div>
     );
 }
@@ -119,9 +128,13 @@ function Girafes(props){
     const [selectedEnclosure, setSelectedEnclosure] = useState(firstTab); 
     const [editedGirafe, setEditedGirafe] = useState('-1');
     const [isAddingNew, setIsAddingNew] = useState(false);
+    const [updatesIsShown, setUpdatesIsShown] = useState(false);
+    const [infoIsShown, setInfoIsShown] = useState(true);
 
     function selectTab(id) {
         setIsAddingNew(false);
+        setInfoIsShown(true);
+        setUpdatesIsShown(false);
         setSelectedEnclosure(id);
     }
 
@@ -140,7 +153,6 @@ function Girafes(props){
     }
 
     function deleteGirafe(id) {
-        console.log('dd');
         setEditedGirafe('-1');
         props.deleteGirafe(id);
     }
@@ -149,6 +161,14 @@ function Girafes(props){
         girafe.enclosureId = selectedEnclosure;
         props.addGirafe(girafe);
         setIsAddingNew(false);
+    }
+
+    function toggleUpdates(){
+        setUpdatesIsShown(!updatesIsShown);
+    }
+    
+    function toggleInfo(){
+        setInfoIsShown(!infoIsShown);
     }
 
     function getFullness(){
@@ -216,13 +236,13 @@ function Girafes(props){
                                         girafe={props.girafes.byIds[id]}
                                         onHeaderClick={editGirafe}
                                         edited={editedGirafe === id}
-                                        onDelete={(id) => deleteGirafe}
+                                        onDelete={(id) => deleteGirafe(id)}
                                     />
                             )
                     }
                 </div>
-                <GirafesInfo  fullness={getFullness()}/>
-                <Updates/>
+                { infoIsShown && <GirafesInfo  fullness={getFullness()} onClick={toggleUpdates} onClose={toggleInfo}/> }
+                { updatesIsShown && <Updates onClose={toggleUpdates} actions={props.actions} enclosureId={selectedEnclosure} /> }
             </div>
         );
     }

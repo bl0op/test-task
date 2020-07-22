@@ -1,6 +1,7 @@
 import { put, takeEvery, all } from 'redux-saga/effects';
 import * as Actions from './ActionTypes';
 import * as ActionCreators from './ActionCreators';
+import { counter, incrementCounter } from '../shared/counter';
 
 const delay = (ms) => new Promise(res => setInterval(res, ms));
 
@@ -17,7 +18,6 @@ function* watchGirafesSaga() {
     yield takeEvery(Actions.DeleteGirafe, deleteGirafe);
 }
 
-
 /* not async yet */
 function* authUser(action) {
     yield put(ActionCreators.authStart());
@@ -30,9 +30,37 @@ function* addEnclosure(action) {
 }
 
 function* addGirafe(action) {
+    /* should be handled on server logic */
+    let today = new Date();
+    let month = [
+        "янв",
+        "фев",
+        "мар",
+        "апр",
+        "май",
+        "июн",
+        "июл",
+        "авг",
+        "сен",
+        "окт",
+        "ноя",
+        "дек"
+    ];
+
+    let date = today.getDate()+' '+month[(today.getMonth())]+' '+today.getFullYear();
+    let actionObj = {
+         enclosureId: action.girafe.enclosureId,
+         girafeName: action.girafe.name ,
+         type: 'Новый жираф',
+         status: 0,
+         date: date
+    };
+    incrementCounter();
+    let id = counter;
+    yield put(ActionCreators.addAction(actionObj, id));
     yield delay(1000);
-    console.log(action);
     yield put(ActionCreators.addGirafeSuccess(action.girafe));
+    yield put(ActionCreators.updateAction(id, 1));
 }
 
 function* deleteGirafe(action) {

@@ -71,3 +71,19 @@ export function deleteGirafeSuccess(id){
         id: id
     }
 }
+
+/* actions */
+export function addAction(action, id){
+    return {
+        type: Actions.AddAction,
+        action: action,
+        id: id
+    }
+}
+export function updateAction(id, status){
+    return {
+        type: Actions.UpdateAction,
+        id: id,
+        status: status
+    }
+}

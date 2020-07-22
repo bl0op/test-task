@@ -4,6 +4,7 @@ import rootSaga from './sagas';
 import user from './user';
 import enclosures from './enclosures';
 import girafes from './girafes';
+import actions from './actions';
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -11,7 +12,8 @@ const configureStore = createStore(
     combineReducers({
         user: user,
         enclosures: enclosures,
-        girafes: girafes
+        girafes: girafes,
+        actions: actions
     }),
     {},
     compose(

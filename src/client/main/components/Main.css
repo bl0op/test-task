@@ -36,3 +36,11 @@
 }
 /* /main__auth */
 
+
+/* medias */
+@media (max-width: 599px){
+    .main__auth {
+        display: none;
+    }
+
+}
